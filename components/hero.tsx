@@ -145,7 +145,7 @@ export default function Hero() {
           style={{ animationDelay: "0.8s" }}
         >
           <Link
-            href="#"
+            href="https://eirtm-2026-technical.vercel.app/"
             className="px-8 py-4 bg-cyan-300 text-blue-950 font-poppins font-bold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl hover:shadow-cyan-300/40" // <-- NEW: Neon colors
           >
             🧠 Technical Conference
