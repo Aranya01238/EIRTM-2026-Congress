@@ -181,3 +181,51 @@ html {
 .animate-slide-in-left {
   animation: slideInLeft 0.8s ease-out;
 }
+
+/* === Custom Swiper Pagination === */
+
+/* Target the pagination container we created */
+.swiper-pagination {
+  position: relative; /* This is already set in your component, which is great */
+}
+
+/* Style for the inactive dots */
+.swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #ffffff; /* Or a light gray color */
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+/* === Custom Swiper Pagination === */
+
+/* Style for the inactive dots */
+.swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #ffffff; /* Or a light gray */
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+/* === Custom Swiper Pagination === */
+
+/* Style for the inactive dots */
+.swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #ffffff; /* Or a light gray */
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+/* Style for the active dot */
+.swiper-pagination .swiper-pagination-bullet-active {
+  background-color: hsl(
+    var(--accent)
+  ); /* Uses your Tailwind 'accent' color */
+  width: 32px; /* Make the active dot wider */
+  border-radius: 6px;
+  opacity: 1;
+}

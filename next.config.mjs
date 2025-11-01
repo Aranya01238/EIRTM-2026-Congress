@@ -2,9 +2,9 @@
 const nextConfig = {
   // Add this line to disable Turbopack
   experimental: {
-    appDir: true, // Keep this if you are using the app directory
+    // appDir: true, // Keep this if you are using the app directory
     // Other experimental flags you might have
-    webpack: true, // Explicitly enable webpack
+    // webpack: true, // Explicitly enable webpack
   },
 };
 
