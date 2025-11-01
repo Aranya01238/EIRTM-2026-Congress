@@ -128,7 +128,7 @@
   }
 
   .shadow-neon-gold {
-    @apply shadow-[0_0_15px_rgba(212,175,55,0.6),0_0_30px_rgba(212,175,55,0.3)];
+    @apply shadow-[0_0_15px_rgba(212,175,55,0.3),0_0_30px_rgba(212,175,55,0.15)];
   }
 
   /* Consolidated Swiper pagination styles */
@@ -240,18 +240,4 @@ html {
   width: 32px; /* Make the active dot wider */
   border-radius: 6px;
   opacity: 1;
-}
-/* globals.css */
-
-/* Style Swiper pagination dots */
-.swiper-pagination .swiper-pagination-bullet {
-  @apply w-3 h-3 bg-white/30 backdrop-blur-sm;
-  transition: all 0.2s ease;
-}
-
-/* Style the active dot */
-.swiper-pagination .swiper-pagination-bullet-active {
-  @apply w-6 h-3 rounded-full;
-  background-color: #00ffff; /* Your theme's accent color (cyan) */
-  box-shadow: 0 0 10px #00ffff;
 }
