@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Hero() {
   const [particles, setParticles] = useState<
@@ -20,13 +21,24 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const newParticles = Array.from({ length: 30 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      duration: Math.random() * 5 + 5,
-      delay: Math.random() * 5,
-    }));
+    const numParticles = 35;
+    const numCols = 7;
+    const numRows = Math.ceil(numParticles / numCols);
+
+    const newParticles = Array.from({ length: numParticles }, (_, i) => {
+      const col = i % numCols;
+      const row = Math.floor(i / numCols);
+      const x = (col / numCols) * 100 + 100 / (2 * numCols);
+      const y = (row / numRows) * 100 + 100 / (2 * numRows);
+
+      return {
+        id: i,
+        x: x,
+        y: y,
+        duration: Math.random() * 6 + 4,
+        delay: Math.random() * 6,
+      };
+    });
     setParticles(newParticles);
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -35,8 +47,8 @@ export default function Hero() {
 
       const xTilt = e.clientX - rect.left - rect.width / 2;
       const yTilt = e.clientY - rect.top - rect.height / 2;
-      const rotateY = (xTilt / (rect.width / 2)) * -5;
-      const rotateX = (yTilt / (rect.height / 2)) * 5;
+      const rotateY = (xTilt / (rect.width / 2)) * -6;
+      const rotateX = (yTilt / (rect.height / 2)) * 6;
       setRotate({ x: rotateX, y: rotateY });
 
       const xSpot = e.clientX - rect.left;
@@ -44,9 +56,7 @@ export default function Hero() {
       setMousePos({ x: xSpot, y: ySpot });
     };
 
-    const handleMouseLeave = () => {
-      setRotate({ x: 0, y: 0 });
-    };
+    const handleMouseLeave = () => setRotate({ x: 0, y: 0 });
 
     const currentRef = sectionRef.current;
     if (currentRef) {
@@ -68,34 +78,32 @@ export default function Hero() {
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 [perspective:1000px]"
     >
-      {/* Background Image Layer (z-0) */}
-      <div
-        className="absolute inset-0 z-0 bg-cover bg-center opacity-20"
-        style={{
-          // UPDATED: Using the provided Paris skyline image
-          backgroundImage: "url(/image.png)", // Corrected path for images in the public folder
-          backgroundSize: "cover", // Ensures the image covers the whole area
-          backgroundPosition: "center 35%", // Centers the image horizontally, 70% down vertically
-        }}
-      ></div>
+      {/* Background Image */}
+      <Image
+        src="/image.png"
+        alt="Background"
+        fill
+        className="object-cover z-0 brightness-[0.95]"
+        priority
+      />
 
-      {/* Dark Blue/Black Animated Gradient (z-10) */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-br from-blue-950 via-black to-blue-950 bg-[length:200%_200%] opacity-70 animate-gradient-xy"></div>
+      {/* Overlay Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#E0F7FA] via-[#E1F5FE] to-[#B2EBF2] opacity-90 z-10"></div>
 
-      {/* Mouse-Follow Spotlight (z-20) */}
+      {/* Subtle Spotlight Following Mouse */}
       <div
         className="absolute inset-0 z-20 transition-all duration-300 ease-out"
         style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0, 200, 255, 0.1), transparent 80%)`, // Changed color to neon ocean blue
+          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.15), transparent 80%)`,
         }}
       ></div>
 
-      {/* Floating Particles (z-30) */}
+      {/* Floating Glow Particles */}
       <div className="absolute inset-0 z-30">
         {particles.map((particle) => (
           <div
             key={particle.id}
-            className="absolute w-1.5 h-1.5 bg-cyan-300 rounded-full opacity-30 animate-float-complex"
+            className="absolute w-2 h-2 bg-cyan-300 rounded-full opacity-70 shadow-[0_0_8px_2px_rgba(103,232,249,0.4)] animate-float-slow"
             style={{
               left: `${particle.x}%`,
               top: `${particle.y}%`,
@@ -106,24 +114,37 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Refined Glassmorphism Card (z-40) */}
+      {/* Hero Card */}
       <div
-        className="relative z-40 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto p-8 sm:p-12 rounded-2xl bg-blue-950/0 backdrop-blur-sm border border-cyan-300/10 shadow-2xl transition-transform duration-300 ease-out"
+        className="relative z-40 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto p-10 sm:p-14 rounded-3xl bg-white/30 backdrop-blur-md border border-white/40 shadow-[0_0_60px_-10px_rgba(0,0,0,0.2)] hover:shadow-[0_0_80px_-10px_rgba(103,232,249,0.3)] transition-transform duration-500 ease-out"
         style={{
           transform: `rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
         }}
       >
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-poppins font-bold text-white mb-6 animate-fade-in-up bg-gradient-to-r from-white to-cyan-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-text-shine">
-          EIRTM 2026 Congress
+        {/* Logo */}
+        <div className="mb-6 flex justify-center">
+          <Image
+            src="/gallery/cropped-eirtmlogo.jpeg"
+            alt="EIRTM Logo"
+            width={150}
+            height={150}
+            className="object-contain drop-shadow-[0_0_12px_rgba(0,150,200,0.3)] animate-fade-in-up"
+          />
+        </div>
+
+        {/* Heading */}
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-poppins font-bold text-[#0B3954] mb-4 animate-fade-in-up leading-tight">
+          EIRTM <span className="text-cyan-600">2026 Congress</span>
         </h1>
 
         <div
-          className="h-1 w-24 bg-cyan-300 mx-auto mb-8 animate-fade-in-up"
+          className="h-1 w-24 bg-gradient-to-r from-cyan-400 to-blue-400 mx-auto mb-8 rounded-full animate-fade-in-up"
           style={{ animationDelay: "0.2s" }}
         ></div>
 
+        {/* Subtitle */}
         <p
-          className="text-xl sm:text-2xl text-white/90 mb-4 font-light animate-fade-in-up"
+          className="text-lg sm:text-xl text-gray-700 mb-3 font-light animate-fade-in-up"
           style={{ animationDelay: "0.4s" }}
         >
           International Conference on Emerging Innovations in Research,
@@ -131,49 +152,49 @@ export default function Hero() {
         </p>
 
         <p
-          className="text-lg sm:text-xl text-cyan-300 mb-12 font-poppins font-semibold animate-fade-in-up"
+          className="text-md sm:text-lg text-cyan-700 mb-10 font-semibold font-poppins animate-fade-in-up"
           style={{ animationDelay: "0.6s" }}
         >
           21st – 23rd April, 2026 | Institute of Engineering & Management,
           Kolkata, India
         </p>
 
+        {/* Buttons */}
         <div
           className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up"
           style={{ animationDelay: "0.8s" }}
         >
           <Link
             href="https://eirtm-2026-technical.vercel.app/"
-            className="px-8 py-4 bg-cyan-300 text-blue-950 font-poppins font-bold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl hover:shadow-cyan-300/40"
+            className="px-10 py-4 bg-gradient-to-r from-cyan-600 to-blue-500 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-cyan-500/30"
           >
             🧠 Technical Conference
           </Link>
           <Link
             href="#"
-            className="px-8 py-4 border-2 border-cyan-300 text-cyan-300 font-poppins font-bold rounded-lg transition-all duration-300 transform hover:scale-105 hover:bg-cyan-300 hover:text-blue-950 hover:shadow-lg hover:shadow-cyan-300/30"
+            className="px-10 py-4 border-2 border-cyan-600 text-cyan-700 font-semibold rounded-xl transition-all duration-300 hover:bg-cyan-600 hover:text-white hover:scale-105 shadow-md hover:shadow-cyan-600/30"
           >
             💼 Management Conference
           </Link>
         </div>
       </div>
 
-      {/* Scroll Indicator (z-40) */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40">
-        <div className="animate-bounce">
-          <svg
-            className="w-6 h-6 text-cyan-300"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </div>
+      {/* Scroll Indicator */}
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-4 sm:bottom-2 left-1/2 transform -translate-x-1/2 z-40 animate-bounce">
+        <svg
+          className="w-8 h-8 text-cyan-500 drop-shadow-[0_0_6px_rgba(103,232,249,0.6)]"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2.5}
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+          />
+        </svg>
       </div>
     </section>
   );
