@@ -135,9 +135,9 @@ export default function Hero() {
         {/* Heading */}
         <h1 className="text-3xl sm:text-xl lg:text-5xl font-poppins font-bold text-[#0B3954] mb-4 animate-fade-in-up leading-tight">
           European Interdisciplinary Research in Technology and Management{" "}
-          <span className="text-cyan-600">- (EIRTM 2026)</span>
+          <span className="text-cyan-600"> (EIRTM, 2026)</span>
           <br />
-          Congress
+          CONGRESS
         </h1>
 
         <div
