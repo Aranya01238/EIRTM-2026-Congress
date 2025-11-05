@@ -168,13 +168,15 @@ export default function Hero() {
             href="https://eirtm-2026-technical.vercel.app/"
             className="px-10 py-4 bg-gradient-to-r from-cyan-600 to-blue-500 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-cyan-500/30"
           >
-            🧠 Technical Conference
+            🧠 International Conference on Emerging Computing and Innovative
+            Technologies - ICECIT, 2026
           </Link>
           <Link
-            href="#"
+            href="https://eirtm-2026-management.vercel.app/"
             className="px-10 py-4 border-2 border-cyan-600 text-cyan-700 font-semibold rounded-xl transition-all duration-300 hover:bg-cyan-600 hover:text-white hover:scale-105 shadow-md hover:shadow-cyan-600/30"
           >
-            💼 Management Conference
+            💼 International Conference on Economics, Business and Management -
+            ICEBM, 2026
           </Link>
         </div>
       </div>
