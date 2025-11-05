@@ -153,7 +153,6 @@ export default function Hero() {
           Institute of Île-de-France, France EMLV - The Leonard De Vinci
           Business School Paris, France
         </p>
-
         {/* Buttons */}
         <div
           className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up"
