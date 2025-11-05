@@ -133,8 +133,9 @@ export default function Hero() {
         </div>
 
         {/* Heading */}
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-poppins font-bold text-[#0B3954] mb-4 animate-fade-in-up leading-tight">
-          EIRTM <span className="text-cyan-600">2026 Congress</span>
+        <h1 className="text-3xl sm:text-xl lg:text-5xl font-poppins font-bold text-[#0B3954] mb-4 animate-fade-in-up leading-tight">
+          European Interdisciplinary Research in Technology and Management{" "}
+          <span className="text-cyan-600">2026 Congress</span>
         </h1>
 
         <div
@@ -147,16 +148,16 @@ export default function Hero() {
           className="text-lg sm:text-xl text-gray-700 mb-3 font-light animate-fade-in-up"
           style={{ animationDelay: "0.4s" }}
         >
-          International Conference on Emerging Innovations in Research,
-          Technology, and Management
+          (EIRTM, 2026)
         </p>
 
         <p
           className="text-md sm:text-lg text-cyan-700 mb-10 font-semibold font-poppins animate-fade-in-up"
           style={{ animationDelay: "0.6s" }}
         >
-          21st – 23rd April, 2026 | Institute of Engineering & Management,
-          Kolkata, India
+          21st – 23rd April, 2026 | In association with The Photovoltaic
+          Institute of Île-de-France, France EMLV - The Leonard De Vinci
+          Business School Paris, France
         </p>
 
         {/* Buttons */}
