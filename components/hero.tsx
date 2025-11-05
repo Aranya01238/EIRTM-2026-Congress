@@ -146,13 +146,24 @@ export default function Hero() {
         ></div>
 
         <p
-          className="text-md sm:text-lg text-cyan-700 mb-10 font-semibold font-poppins animate-fade-in-up"
+          className="text-md sm:text-lg text-cyan-700 mb-2 font-semibold font-poppins animate-fade-in-up" // Adjusted mb-10 to mb-2 to make space for the new venue line
           style={{ animationDelay: "0.6s" }}
         >
-          21st – 23rd April, 2026 | In association with The Photovoltaic
-          Institute of Île-de-France, France EMLV - The Leonard De Vinci
-          Business School Paris, France
+          21st – 23rd April, 2026
         </p>
+        {/* New Venue Line */}
+        <div
+          className="flex flex-col sm:flex-row items-center justify-center text-md sm:text-lg text-cyan-700 mb-10 font-semibold font-poppins animate-fade-in-up" // Added styling for the new venue line
+          style={{ animationDelay: "0.7s" }} // Slightly delayed animation
+        >
+          <div className="hidden sm:block text-sky-400 font-light">|</div>
+          <div className="flex items-center gap-2">
+            <span className="font-medium">
+              <span className="font-bold">Venue:</span> The Photovoltaic
+              Institute of Île-de-France, Paris, France
+            </span>
+          </div>
+        </div>
         {/* Buttons */}
         <div
           className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up"
