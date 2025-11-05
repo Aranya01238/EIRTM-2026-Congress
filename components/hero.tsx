@@ -151,6 +151,7 @@ export default function Hero() {
         >
           21st – 23rd April, 2026
         </p>
+
         {/* New Venue Line */}
         <div
           className="flex flex-col sm:flex-row items-center justify-center text-md sm:text-lg text-cyan-700 mb-10 font-semibold font-poppins animate-fade-in-up" // Added styling for the new venue line
