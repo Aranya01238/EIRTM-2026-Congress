@@ -13,7 +13,7 @@ export default function Hero() {
 
   // Particles + Mouse Spotlight
   useEffect(() => {
-    const numParticles = 35;
+    const numParticles = 30;
     const newParticles = Array.from({ length: numParticles }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
@@ -35,20 +35,19 @@ export default function Hero() {
     const current = sectionRef.current;
     if (current) current.addEventListener("mousemove", handleMouseMove);
 
-    return () => {
-      if (current) current.removeEventListener("mousemove", handleMouseMove);
-    };
+    return () => current?.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
     <section
       id="home"
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-[#030616]"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 
+      bg-[#030616]"
     >
-      {/* 🔵 Sliding Background Images */}
-      <div className="absolute inset-0 overflow-hidden z-0">
-        <div className="absolute w-[200%] h-full flex animate-slide">
+      {/* Sliding Background Images */}
+      <div className="absolute inset-0 overflow-hidden z-0 opacity-50 sm:opacity-70">
+        <div className="absolute w-[250%] sm:w-[200%] h-full flex animate-slide">
           <Image
             src="/gallery/1Gm7gO.png"
             alt="Conference Hall"
@@ -68,43 +67,44 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* 🔵 Neon Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#001933aa] via-[#001233aa] to-[#000622aa] z-10"></div>
+      {/* Neon Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#001933aa] via-[#001233aa] to-[#000622aa] z-10" />
 
-      {/* 🔵 Spotlight Following Mouse */}
+      {/* Spotlight */}
       <div
         className="absolute inset-0 z-20 transition-all duration-300 ease-out"
         style={{
-          background: `radial-gradient(700px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0,255,255,0.18), transparent 80%)`,
+          background: `radial-gradient(450px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0,255,255,0.18), transparent 80%)`,
         }}
-      ></div>
+      />
 
-      {/* 🔵 Neon Floating Particles */}
+      {/* Floating Neon Particles */}
       <div className="absolute inset-0 z-30">
         {particles.map((p) => (
           <div
             key={p.id}
-            className="absolute w-2 h-2 bg-cyan-300 rounded-full opacity-70 shadow-[0_0_15px_3px_rgba(0,255,255,0.5)] animate-float-slow"
+            className="absolute w-1.5 h-1.5 sm:w-2 sm:h-2 bg-cyan-300 rounded-full opacity-70 
+            shadow-[0_0_12px_3px_rgba(0,255,255,0.5)] animate-float-slow"
             style={{
               left: `${p.x}%`,
               top: `${p.y}%`,
               animationDuration: `${p.duration}s`,
               animationDelay: `${p.delay}s`,
             }}
-          ></div>
+          />
         ))}
       </div>
 
-      {/* ====================================================== */}
-      {/* 🔶 TEXT SECTION (Matches Screenshot + Buttons Added)   */}
-      {/* ====================================================== */}
-
-      <div className="absolute z-40 inset-x-0 top-[22%] px-4">
-        <div className="bg-black/60 backdrop-blur-md mx-auto max-w-6xl p-8 rounded-md text-center shadow-xl border border-white/10">
+      {/* CENTER TEXT AREA */}
+      <div className="absolute z-40 inset-x-0 top-[18%] px-4 sm:px-6 md:px-10">
+        <div
+          className="bg-black/50 backdrop-blur-md mx-auto max-w-5xl p-6 sm:p-10 rounded-lg 
+        text-center shadow-xl border border-white/10"
+        >
           {/* LOGO */}
           <div className="flex justify-center mb-4">
             <Image
-              src="/gallery/cropped-eirtmlogo.jpeg"
+              src="/gallery/EUROPEAN ON.png"
               alt="EIRTM Logo"
               width={140}
               height={140}
@@ -112,56 +112,51 @@ export default function Hero() {
             />
           </div>
 
-          {/* EIRTM Heading */}
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">
+          {/* HEADING */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-3">
             EIRTM 2026
           </h1>
 
-          {/* Title */}
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white leading-relaxed mb-3">
             European Congress on Interdisciplinary Research in Technology and
-            Management (EIRTM, 2026)
+            Management
           </h2>
 
-          {/* Sub-title */}
-          <p className="text-xl sm:text-2xl italic text-gray-200 mb-2">
+          <p className="text-base sm:text-lg md:text-xl italic text-gray-200 mb-1">
             In association with The Photovoltaic Institute of Île-de-France,
             France
           </p>
 
-          {/* Bold Line */}
-          <p className="text-xl sm:text-2xl font-bold text-white">
-            EMLV - The Leonard De Vinci Business School Paris, France
+          <p className="text-base sm:text-xl md:text-2xl font-bold text-white">
+            EMLV - The Leonard De Vinci Business School, Paris
           </p>
 
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mt-8">
+          {/* BUTTONS */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mt-8">
             <Link
               href="https://eirtm-2026-technical.vercel.app/"
-              className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl
-               transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(0,255,255,0.4)]
-               hover:shadow-[0_0_30px_rgba(0,255,255,0.6)] text-center"
+              className="px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-cyan-500 to-blue-600 
+              text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 
+              shadow-[0_0_18px_rgba(0,255,255,0.4)] text-center text-sm sm:text-base"
             >
-              🧠 International Conference on Emerging Computing and Innovative
-              Technologies — ICECIT 2026
+              🧠 ICECIT 2026 — Emerging Computing & Innovative Tech
             </Link>
 
             <Link
               href="https://eirtm-2026-management.vercel.app/"
-              className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl
-               transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(0,255,255,0.4)]
-               hover:shadow-[0_0_30px_rgba(0,255,255,0.6)] text-center"
+              className="px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-cyan-500 to-blue-600 
+              text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 
+              shadow-[0_0_18px_rgba(0,255,255,0.4)] text-center text-sm sm:text-base"
             >
-              💼 International Conference on Economics, Business and Management
-              — ICEBM 2026
+              💼 ICEBM 2026 — Economics, Business & Management
             </Link>
           </div>
         </div>
       </div>
 
       {/* DATE BAR */}
-      <div className="absolute z-40 bottom-10 inset-x-0">
-        <div className="bg-black/80 text-white text-center w-full py-4 text-xl sm:text-2xl font-bold tracking-wide">
+      <div className="absolute z-40 bottom-0 w-full">
+        <div className="bg-black/80 text-white text-center py-3 text-lg sm:text-xl md:text-2xl font-bold tracking-wide">
           Conference On: 21st – 23rd April, 2026
         </div>
       </div>
